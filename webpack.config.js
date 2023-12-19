@@ -6,7 +6,7 @@ const { dependencies } = require('./package.json');
 
 module.exports = {
   mode: 'development',
-  entry: path.resolve(__dirname, 'src/index.tsx'),
+  entry: path.resolve(__dirname, 'src/index.ts'),
   output: {
     path: path.resolve(__dirname, 'dist'),
     filename: 'tvshow-microfrontend.js',
@@ -30,6 +30,14 @@ module.exports = {
         use: 'ts-loader',
         exclude: /node_modules/,
       },
+      {
+        test: /\.(png|jpe?g|gif)$/i,
+        use: [
+          {
+            loader: 'file-loader',
+          },
+        ],
+      },
     ],
   },
   plugins: [
@@ -43,14 +51,13 @@ module.exports = {
       name: 'tvShowMicrofrontend',
       filename: 'tvshow.js',
       exposes: {
-        './TvShow': './src/index.tsx',
+        './TvShow': './src/components/pages/TvShow/TvShow.tsx',
       },
       shared: {
         ...dependencies,
-        react: { singleton: true, eager: true, requiredVersion: dependencies.react },
+        react: { singleton: true, requiredVersion: dependencies.react },
         'react-dom': {
           singleton: true,
-          eager: true,
           requiredVersion: dependencies['react-dom'],
         },
       },
