@@ -5,7 +5,10 @@ const { ModuleFederationPlugin } = require('webpack').container;
 const { dependencies } = require('./package.json');
 
 module.exports = {
-  mode: 'development',
+  mode: 'production',
+  performance: {
+    hints: false,
+  },
   entry: path.resolve(__dirname, 'src/index.ts'),
   output: {
     path: path.resolve(__dirname, 'dist'),
@@ -13,12 +16,7 @@ module.exports = {
   },
   devtool: 'inline-source-map',
   devServer: {
-    static: {
-      directory: path.join(__dirname, 'dist'),
-    },
-    hot: true,
-    open: true,
-    port: '3000',
+    port: 3002,
   },
   resolve: {
     extensions: ['.tsx', '.ts', '.js'],
@@ -51,13 +49,15 @@ module.exports = {
       name: 'tvShowMicrofrontend',
       filename: 'tvshow.js',
       exposes: {
-        './TvShow': './src/components/pages/TvShow/TvShow.tsx',
+        './TvShow': './src/App.tsx',
+        './hooks/useSwitchTvShowMFELanguage': './src/hooks/useSwitchLanguage.ts',
       },
       shared: {
         ...dependencies,
-        react: { singleton: true, requiredVersion: dependencies.react },
+        react: { singleton: true, eager: true, requiredVersion: dependencies.react },
         'react-dom': {
           singleton: true,
+          eager: true,
           requiredVersion: dependencies['react-dom'],
         },
       },

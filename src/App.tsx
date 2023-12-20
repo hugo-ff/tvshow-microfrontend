@@ -12,7 +12,7 @@ import { theme } from './styles/theme';
 
 const charactersRepository = new RickAndMortyApiCharactersRepository(RICK_AND_MORTY_API_BASE_URL);
 
-export const App = () => (
+const App = () => (
   <I18nextProvider i18n={appInstance}>
     <ThemeProvider theme={theme}>
       <Normalize />
@@ -21,3 +21,5 @@ export const App = () => (
     </ThemeProvider>
   </I18nextProvider>
 );
+
+export default App;

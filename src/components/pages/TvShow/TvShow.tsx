@@ -1,8 +1,7 @@
-import { useTranslation } from 'react-i18next';
-
 import logoPng from '../../../assets/logo.png';
 import type { CharactersRepository } from '../../../features/tvshow-characters-list/application/characters-repository';
 import type { TvShow as TvShowInterface } from '../../../features/tvshow-characters-list/domain/tvshow';
+import { useTvShowTranslation } from '../../../hooks/useTvShowTranslation';
 import { Spinner } from '../../atoms/Spinner';
 import { CharactersList } from '../../organisms/CharactersList';
 import { CHARACTERS_PER_PAGE } from './constants';
@@ -15,7 +14,7 @@ interface TvShowProps {
 }
 
 export const TvShow: React.FC<TvShowProps> = ({ tvshow, charactersRepository }) => {
-  const { t } = useTranslation();
+  const t = useTvShowTranslation();
   const { charactersData, isLoadingCharacters } = useCharactersRepository(charactersRepository);
 
   if (isLoadingCharacters) {

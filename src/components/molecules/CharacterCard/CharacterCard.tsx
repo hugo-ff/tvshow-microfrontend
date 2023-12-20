@@ -1,6 +1,5 @@
-import { useTranslation } from 'react-i18next';
-
 import { Character } from '../../../features/tvshow-characters-list/domain/character';
+import { useTvShowTranslation } from '../../../hooks/useTvShowTranslation';
 import { PLACEHOLDER_IMAGE_URL } from './constants';
 import styled from './styles';
 
@@ -9,7 +8,7 @@ interface CharacterCardProps {
 }
 
 export const CharacterCard: React.FC<CharacterCardProps> = ({ character }) => {
-  const { t } = useTranslation();
+  const t = useTvShowTranslation();
 
   const { imageUrl, origin, location, name, species } = character;
 

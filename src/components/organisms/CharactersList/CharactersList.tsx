@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react';
-import { useTranslation } from 'react-i18next';
 
 import { Character } from '../../../features/tvshow-characters-list/domain/character';
+import { useTvShowTranslation } from '../../../hooks/useTvShowTranslation';
 import { SearchInput } from '../../atoms/SearchInput';
 import { CharacterCard } from '../../molecules/CharacterCard/CharacterCard';
 import { Pagination } from '../../molecules/Pagination';
@@ -16,7 +16,7 @@ export const CharactersList: React.FC<CharactersListProps> = ({
   charactersData,
   charactersPerPage,
 }) => {
-  const { t } = useTranslation();
+  const t = useTvShowTranslation();
 
   const [searchTerm, setSearchTerm] = useState('');
   const [filteredCharacters, setFilteredCharacters] = useState(charactersData);
