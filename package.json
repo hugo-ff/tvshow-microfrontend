@@ -8,7 +8,7 @@
     "build": "yarn clean && webpack --config webpack.config.js",
     "start": "webpack-dev-server --open --hot",
     "serve:dev": "webpack serve",
-    "serve": "yarn build && serve dist -p 3001",
+    "serve": "yarn build && serve dist -p 3002",
     "clean": "rm -rf dist",
     "test": "jest --watch --config=jest.config.js --passWithNoTests",
     "typecheck": "tsc --pretty --noEmit",
